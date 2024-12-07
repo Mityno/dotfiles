@@ -1,0 +1,9 @@
+[font]
+size = 12
+
+[[font.normal]]
+family = "GeistMono Nerd Font Propo"
+style = "Light"
+
+[[font.normal]]
+family = "Courier New"
