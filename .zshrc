@@ -1,9 +1,12 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/.cargo/bin:$PATH
-export PATH=$PATH:$HOME/.local/kitty.app/bin/
+export PATH=$PATH:$HOME/.local/kitty.app/bin/:/snap/bin/
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+# Path to dotfiles
+export DOTFILES="$HOME/dotfiles"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -72,7 +75,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
-plugins=($plugins spaceship-vi-mode)
+# plugins=($plugins spaceship-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,5 +107,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# Source a file that stores all aliases (shell independent)
+source $DOTFILES/.aliases
+# Source a file that stores all custom functions (shell independent)
+source $DOTFILES/.functions
 
 eval "$(starship init zsh)"
