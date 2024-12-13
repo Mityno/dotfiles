@@ -1,3 +1,8 @@
+sudo apt install zsh, fzf
+
+# Install Oh-My-Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 # Install starship
 curl -sS https://starship.rs/install.sh | sh
 

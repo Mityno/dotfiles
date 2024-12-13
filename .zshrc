@@ -75,7 +75,6 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
-# plugins=($plugins spaceship-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -107,9 +106,22 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Check is a command exist on the environment
+command_exists() {
+
+        if command -v "$1" &>/dev/null; then
+                true
+        else
+                false
+        fi
+}
+
 # Source a file that stores all aliases (shell independent)
 source $DOTFILES/.aliases
 # Source a file that stores all custom functions (shell independent)
 source $DOTFILES/.functions
 
 eval "$(starship init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

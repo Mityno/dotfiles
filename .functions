@@ -1,9 +1,24 @@
 #!/usr/bin/env bash
 
-neovide() {
-        if [ $# -eq 0 ]; then
-                neovide.exe --wsl --opengl --maximized --neovim-bin /snap/bin/nvim
-        else
-                neovide.exe --wsl --opengl --maximized --neovim-bin /snap/bin/nvim -- -c :e "$1"
-        fi
+# Custom neovide command (only) for WSL (use neovide.exe from windows)
+if ! command_exists neovide; then
+        neovide() {
+                # if neovide --version; then
+                #         neovide
+                # fi
+
+                if [ $# -eq 0 ]; then
+                        neovide.exe --wsl --opengl --maximized --neovim-bin /snap/bin/nvim
+                else
+                        neovide.exe --wsl --opengl --maximized --neovim-bin /snap/bin/nvim -- -c :e "$1"
+                fi
+        }
+fi
+
+# Shortcut to launch a kitty session with fzf
+kitty_session() {
+        BUFFER="kitty --detach --session sessions/\$(ls ~/dotfiles/kitty/sessions | fzf) --start-as fullscreen && exit"
+        zle accept-line
 }
+zle -N kitty_session
+bindkey "^S" kitty_session

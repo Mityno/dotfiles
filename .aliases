@@ -1,1 +1,5 @@
 #!/usr/bin/env bash
+
+if command_exists kitten; then
+        alias ks="kitten ssh"
+fi
