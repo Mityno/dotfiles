@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/.cargo/bin:$PATH
-export PATH=$PATH:$HOME/.local/kitty.app/bin/:/snap/bin/
+export PATH=$PATH:$HOME/.local/kitty.app/bin/:/snap/bin/:$HOME/applications/bin/
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
