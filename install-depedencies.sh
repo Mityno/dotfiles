@@ -1,3 +1,6 @@
+# Update existing libraries and packages information
+sudo apt update && apt upgrade
+
 sudo apt install zsh, fzf
 
 # Install Oh-My-Zsh

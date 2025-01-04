@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
+alias apt_full_update="sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo apt autoclean"
+
 if command_exists kitten; then
         alias ks="kitten ssh"
 fi
-
-alias apt_full_update="sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo apt autoclean"

@@ -3,10 +3,6 @@
 # Custom neovide command (only) for WSL (use neovide.exe from windows)
 if ! command_exists neovide; then
         neovide() {
-                # if neovide --version; then
-                #         neovide
-                # fi
-
                 if [ $# -eq 0 ]; then
                         neovide.exe --wsl --opengl --maximized --neovim-bin /snap/bin/nvim
                 else
