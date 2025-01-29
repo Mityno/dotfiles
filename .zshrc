@@ -125,3 +125,8 @@ source $DOTFILES/.functions
 eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [-f /proc/sys/fs/binfmt_misc/WSLInterop]; then
+	# Fix graphic issue for WSL
+	export GALLIUM_DRIVER=d3d12
+fi
