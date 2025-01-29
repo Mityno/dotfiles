@@ -121,7 +121,7 @@ fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-if [-f /proc/sys/fs/binfmt_misc/WSLInterop]; then
+if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
 	# Fix graphic issue for WSL
 	export GALLIUM_DRIVER=d3d12
 fi
