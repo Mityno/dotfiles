@@ -109,7 +109,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Check is a command exist on the environment
 command_exists() {
-
         if command -v "$1" &>/dev/null; then
                 true
         else

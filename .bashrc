@@ -84,9 +84,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# Make bash completion case insensitive
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' # Make bash completion case insensitive
 bind 'set completion-ignore-case on'
 
 # some more ls aliases
@@ -124,4 +122,7 @@ fi
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
 	# Fix graphic issue for WSL
 	export GALLIUM_DRIVER=d3d12
+
+if [ whoami == "vialti" ]; then
+	PATH="$PATH:$HOME/.local/bin/"
 fi
