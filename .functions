@@ -7,6 +7,11 @@ apt_full_update() {
         sudo apt autoclean
 }
 
+# SSH variant that open ZSH directly
+zssh() {
+        ssh -t $@ zsh
+}
+
 # Custom neovide command (only) for WSL (use neovide.exe from windows)
 if ! command_exists neovide; then
         neovide() {
