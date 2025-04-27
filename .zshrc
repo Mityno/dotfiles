@@ -2,6 +2,10 @@
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/.cargo/bin:$PATH
 export PATH=$PATH:$HOME/.local/kitty.app/bin/:/snap/bin/:$HOME/applications/bin/
 
+if [ whoami == "vialti" ]; then
+        export PATH=$PATH:/matieres/3MMCEP/riscv/bin/
+fi
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
