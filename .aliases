@@ -4,3 +4,6 @@ if command_exists kitten; then
         alias ks="kitten ssh"
         alias kicat="kitten icat"
 fi
+
+alias c=cat
+alias n=nvim
