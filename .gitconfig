@@ -1,3 +1,5 @@
+[include]
+	path = ~/dotfiles/delta/themes.gitconfig
 [user]
 	email = titouan.vial@grenoble-inp.org
 	name = Titouan Vial
@@ -6,6 +8,9 @@
 [interactive]
 	diffFilter = delta --color-only
 [delta]
+	features = arctic-fox
 	navigate = true
+	side-by-side = true
+	true-color = always
 [merge]
 	conflictStyle = zdiff3

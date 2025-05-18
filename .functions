@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+command_exists() {
+        if command -v "$1" &>/dev/null; then
+                true
+        else
+                false
+        fi
+}
+
 apt_full_update() {
         sudo apt update
         sudo apt upgrade $1

@@ -12,6 +12,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # Path to dotfiles
 export DOTFILES="$HOME/dotfiles"
 
+# Bat config folder
+export BAT_CONFIG_DIR="$HOME/dotfiles/bat/"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
