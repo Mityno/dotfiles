@@ -7,3 +7,5 @@ fi
 
 alias c=bat
 alias n=nvim
+alias grep=batgrep
+alias man=batman
