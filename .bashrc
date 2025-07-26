@@ -119,7 +119,11 @@ fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# WSL only settings
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+        # Allow for tab duplication in the windows terminal
+	PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND "}'printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"'
+
 	# Fix graphic issue for WSL
 	export GALLIUM_DRIVER=d3d12
 
