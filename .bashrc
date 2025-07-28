@@ -125,7 +125,10 @@ if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
 	PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND "}'printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"'
 
 	# Fix graphic issue for WSL
-	export GALLIUM_DRIVER=d3d12
+	# export GALLIUM_DRIVER=d3d12
+
+	PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND "}'printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"'
+fi
 
 if [ whoami == "vialti" ]; then
 	PATH="$PATH:$HOME/.local/bin/"

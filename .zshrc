@@ -145,5 +145,11 @@ if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
         precmd_functions+=(keep_current_path)
 
 	# Fix graphic issue for WSL
-	export GALLIUM_DRIVER=d3d12
+	# export GALLIUM_DRIVER=d3d12
+
+        keep_current_path() {
+          printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
+        }
+        precmd_functions+=(keep_current_path)
 fi
+
