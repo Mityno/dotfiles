@@ -142,7 +142,7 @@ eval "$(starship init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # WSL only settings
-if [ -f /proc/sys/fs/binfmt_misc/WSLInterop* ]; then
+if [ -f "/proc/sys/fs/binfmt_misc/WSLInterop*" ]; then
 
         # Allow for tab duplication in the windows terminal
         keep_current_path() {

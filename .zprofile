@@ -12,7 +12,7 @@ if [ $(whoami) = "titouan" ]; then
 fi
 
 # WSL only settings
-if [ -f /proc/sys/fs/binfmt_misc/WSLInterop* ]; then
+if [ -f "/proc/sys/fs/binfmt_misc/WSLInterop*" ]; then
         # >>> JVM installed by coursier >>>
         export JAVA_HOME="/home/wsl/.cache/coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.28%252B6/OpenJDK11U-jdk_x64_linux_hotspot_11.0.28_6.tar.gz/jdk-11.0.28+6"
         export PATH="$PATH:/home/wsl/.cache/coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.28%252B6/OpenJDK11U-jdk_x64_linux_hotspot_11.0.28_6.tar.gz/jdk-11.0.28+6/bin"
