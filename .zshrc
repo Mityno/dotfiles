@@ -142,7 +142,8 @@ eval "$(starship init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # WSL only settings
-if bash -c 'compgen "/proc/sys/fs/binfmt_misc/WSLInterop*" > /dev/null'; then
+if [ $(whoami) = "wsl" ]; then
+# if bash -c 'compgen "/proc/sys/fs/binfmt_misc/WSLInterop*" > /dev/null'; then
 
         # Allow for tab duplication in the windows terminal
         keep_current_path() {

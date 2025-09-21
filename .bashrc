@@ -89,7 +89,7 @@ bind 'set completion-ignore-case on'
 
 # some more ls aliases
 alias ll='ls -alF'
-alias la='ls -A'
+alias la='ls -lA'
 alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -121,7 +121,7 @@ fi
 
 # WSL only settings
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
-        # Allow for tab duplication in the windows terminal
+	# Allow for tab duplication in the windows terminal
 	PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND "}'printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"'
 
 	# Fix graphic issue for WSL
@@ -133,3 +133,6 @@ fi
 if [ whoami == "vialti" ]; then
 	PATH="$PATH:$HOME/.local/bin/"
 fi
+
+# Extend PATH
+PATH="$PATH:$HOME/applications/bin/"
