@@ -31,6 +31,9 @@ $time\
 # Disable the blank line at the start of the prompt
 # add_newline = false
 
+# Increase timeout for commands
+command_timeout = 1000
+
 # You can also replace your username with a neat symbol like   or disable this
 # and use the os module below
 [username]
