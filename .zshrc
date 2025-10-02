@@ -137,6 +137,7 @@ source $DOTFILES/.aliases
 # Source a file that stores all custom functions (shell independent)
 source $DOTFILES/.functions
 
+export STARSHIP_CONFIG="$HOME/dotfiles/starship.toml"
 eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -164,10 +165,9 @@ fi
 function dir_change_starship_config() {
     local git_dir="$HOME/cours/2a"
     case "$PWD" in
-        "$git_dir/tdt"*) {starship config directory.truncation_length 1} ;; # config for 2nd year classes
-        *) {starship config directory.truncation_length 4};; # default config
+        "$git_dir/tdt"*) STARSHIP_CONFIG="$HOME/dotfiles/starship/starship_classes.toml";; # config for 2nd year classes
+        *) STARSHIP_CONFIG="$HOME/dotfiles/starship.toml";; # default config
     esac
-    echo $STARSHIP_CONFIG
 }
 
 autoload -U add-zsh-hook
