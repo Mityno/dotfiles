@@ -160,3 +160,16 @@ if [ $(whoami) = "wsl" ]; then
         precmd_functions+=(keep_current_path)
 fi
 
+# Special starship config depending on the directory
+function dir_change_starship_config() {
+    local git_dir="$HOME/cours/2a"
+    case "$PWD" in
+        "$git_dir/tdt"*) {starship config directory.truncation_length 1} ;; # config for 2nd year classes
+        *) {starship config directory.truncation_length 4};; # default config
+    esac
+    echo $STARSHIP_CONFIG
+}
+
+autoload -U add-zsh-hook
+
+add-zsh-hook chpwd  dir_change_starship_config
