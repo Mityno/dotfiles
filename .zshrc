@@ -166,6 +166,7 @@ function dir_change_starship_config() {
     local git_dir="$HOME/cours/2a"
     case "$PWD" in
         "$git_dir/tdt"*) STARSHIP_CONFIG="$HOME/dotfiles/starship/starship_classes.toml";; # config for 2nd year classes
+        "$git_dir-echange/tdt"*) STARSHIP_CONFIG="$HOME/dotfiles/starship/starship_classes.toml";; # config for 2nd year classes
         *) STARSHIP_CONFIG="$HOME/dotfiles/starship.toml";; # default config
     esac
 }
