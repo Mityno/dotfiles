@@ -174,3 +174,5 @@ function dir_change_starship_config() {
 autoload -U add-zsh-hook
 
 add-zsh-hook chpwd  dir_change_starship_config
+
+eval "$(direnv hook zsh)"

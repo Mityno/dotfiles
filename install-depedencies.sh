@@ -11,7 +11,7 @@ command_exists() {
 # Update existing libraries and packages information
 sudo apt update && sudo apt upgrade
 
-sudo apt install zsh fzf ripgrep
+sudo apt install zsh fzf ripgrep direnv
 
 # Install Oh-My-Zsh
 if ! command_exists omz; then
