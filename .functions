@@ -38,3 +38,40 @@ kitty_session() {
 }
 zle -N kitty_session
 bindkey "^S" kitty_session
+
+# CSES auto tests
+cses_python_test() {
+        if [ -z ${CODEFILE+x} ]; then
+                CODEFILE=main.py
+        fi
+        python $CODEFILE <$1.in && echo "---" && cat $1.out
+        unset CODEFILE
+}
+
+cses_python_diff() {
+        if [ -z ${CODEFILE+x} ]; then
+                CODEFILE=main.py
+        fi
+        python $CODEFILE <$1.in >tmp.out
+        diff tmp.out $1.out
+        rm tmp.out
+        unset CODEFILE
+}
+
+cses_pypy3_test() {
+        if [ -z ${CODEFILE+x} ]; then
+                CODEFILE=main_pypy.py
+        fi
+        pypy3 $CODEFILE <$1.in && echo "---" && cat $1.out
+        unset CODEFILE
+}
+
+cses_pypy3_diff() {
+        if [ -z ${CODEFILE+x} ]; then
+                CODEFILE=main_pypy.py
+        fi
+        pypy3 $CODEFILE <$1.in >tmp.out
+        diff tmp.out $1.out
+        rm tmp.out
+        unset CODEFILE
+}
