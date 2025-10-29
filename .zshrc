@@ -1,6 +1,15 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.local/kitty.app/bin/:/snap/bin/:$HOME/applications/bin/
+# Add cuda
+export CUDA_HOME=/usr/local/cuda
+if [ -d $CUDA_HOME/bin ]; then
+        export PATH=$PATH:$CUDA_HOME/bin
+fi
+if [ -d $CUDA_HOME/lib64 ]; then
+        export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+fi
+
 
 . ~/.zprofile
 
@@ -16,6 +25,17 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Path to dotfiles
 export DOTFILES="$HOME/dotfiles"
+
+# Download Znap, if it's not there yet.
+ZSH_REPOS=$DOTFILES/zsh_repos
+ZNAP_DIR=$ZSH_REPOS/znap
+[[ -r $ZNAP_DIR/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git $ZNAP_DIR
+source $ZNAP_DIR/znap.zsh  # Start Znap
+
+# Enable zsh-autocomplete
+# source $ZSH_REPOS/marlonrichert/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # Bat config folder
 export BAT_CONFIG_DIR="$HOME/dotfiles/bat/"
@@ -132,8 +152,6 @@ command_exists() {
         fi
 }
 
-# Source a file that stores all aliases (shell independent)
-source $DOTFILES/.aliases
 # Source a file that stores all custom functions (shell independent)
 source $DOTFILES/.functions
 
@@ -145,6 +163,9 @@ eval "$(starship init zsh)"
 # WSL only settings
 if [ $(whoami) = "wsl" ]; then
 # if bash -c 'compgen "/proc/sys/fs/binfmt_misc/WSLInterop*" > /dev/null'; then
+        # Enable fzf bindings and completion
+        source /usr/share/doc/fzf/examples/key-bindings.zsh
+        # source /usr/share/doc/fzf/examples/completion.zsh
 
         # Allow for tab duplication in the windows terminal
         keep_current_path() {
@@ -155,11 +176,22 @@ if [ $(whoami) = "wsl" ]; then
 	# Fix graphic issue for WSL
 	# export GALLIUM_DRIVER=d3d12
 
-        keep_current_path() {
-          printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
+        # nvim shortcut to enable discord presence
+        nvim() {
+             if ! pidof socat > /dev/null 2>&1; then
+                 [ -e /tmp/discord-ipc-0 ] && rm -f /tmp/discord-ipc-0
+                 socat UNIX-LISTEN:/tmp/discord-ipc-0,fork \
+                     EXEC:"npiperelay.exe //./pipe/discord-ipc-0" 2>/dev/null &
+             fi
+
+             command nvim "$@"
+             # Close the communication to avoid running in background
+             pkill socat
         }
-        precmd_functions+=(keep_current_path)
 fi
+
+# Source a file that stores all aliases (shell independent)
+source $DOTFILES/.aliases
 
 # Special starship config depending on the directory
 function dir_change_starship_config() {
