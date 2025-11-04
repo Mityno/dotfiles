@@ -185,8 +185,10 @@ if [ $(whoami) = "wsl" ]; then
              fi
 
              command nvim "$@"
-             # Close the communication to avoid running in background
-             pkill socat
+             if ! pidof nvim > /dev/null 2>&1; then
+                     # Close the communication to avoid running in background
+                     pkill socat
+             fi
         }
 fi
 
