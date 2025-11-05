@@ -136,3 +136,9 @@ fi
 
 # Extend PATH
 PATH="$PATH:$HOME/applications/bin/"
+#
+# Add microchip xc8
+XC8_HOME=/opt/microchip/xc8/v3.10/
+if [ -d $XC8_HOME/bin ]; then
+	PATH=$PATH:$XC8_HOME/bin
+fi

@@ -10,6 +10,12 @@ if [ -d $CUDA_HOME/lib64 ]; then
         export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
 fi
 
+# Add microchip xc8
+export XC8_HOME=/opt/microchip/xc8/v3.10/
+if [ -d $XC8_HOME/bin ]; then
+        export PATH=$PATH:$XC8_HOME/bin
+fi
+
 
 . ~/.zprofile
 
