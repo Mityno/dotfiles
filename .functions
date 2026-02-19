@@ -40,6 +40,8 @@ zle -N kitty_session
 bindkey "^S" kitty_session
 
 # CSES auto tests
+
+# Python functions
 cses_python_test() {
         if [ -z ${CODEFILE+x} ]; then
                 CODEFILE=main.py
@@ -54,6 +56,16 @@ cses_python_diff() {
         fi
         python $CODEFILE <$1.in >tmp.out
         diff tmp.out $1.out
+        rm tmp.out
+        unset CODEFILE
+}
+
+cses_python_full_diff() {
+        if [ -z ${CODEFILE+x} ]; then
+                CODEFILE=main.py
+        fi
+        python $CODEFILE <$1.in >tmp.out
+        diff -y tmp.out $1.out
         rm tmp.out
         unset CODEFILE
 }
@@ -74,4 +86,24 @@ cses_pypy3_diff() {
         diff tmp.out $1.out
         rm tmp.out
         unset CODEFILE
+}
+
+# C functions
+cses_c_test() {
+        make
+        ./main <$1.in && echo "---" && cat $1.out
+}
+
+cses_c_diff() {
+        make
+        ./main <$1.in >tmp.out
+        diff tmp.out $1.out
+        rm tmp.out
+}
+
+cses_c_full_diff() {
+        make
+        ./main <$1.in >tmp.out
+        diff -y tmp.out $1.out
+        rm tmp.out
 }

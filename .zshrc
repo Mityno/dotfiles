@@ -180,7 +180,7 @@ if [ $(whoami) = "wsl" ]; then
         precmd_functions+=(keep_current_path)
 
 	# Fix graphic issue for WSL
-	# export GALLIUM_DRIVER=d3d12
+	export GALLIUM_DRIVER=d3d12
 
         # nvim shortcut to enable discord presence
         nvim() {
