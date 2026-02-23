@@ -7,5 +7,5 @@ fi
 
 alias c=bat
 alias n=nvim
-alias grep=batgrep
+alias grep="batgrep --hidden"
 alias man=batman
