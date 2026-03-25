@@ -9,3 +9,9 @@ alias c=bat
 alias n=nvim
 alias grep="batgrep --hidden"
 alias man=batman
+
+# WSL only aliases
+if [ $(whoami) = "wsl" ]; then
+        perf_path=$(find /usr/lib/linux-tools -name perf)
+        alias perf=$perf_path
+fi
