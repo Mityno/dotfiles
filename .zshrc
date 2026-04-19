@@ -32,13 +32,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Path to dotfiles
 export DOTFILES="$HOME/dotfiles"
 
-# Download Znap, if it's not there yet.
 ZSH_REPOS=$DOTFILES/zsh_repos
-ZNAP_DIR=$ZSH_REPOS/znap
-[[ -r $ZNAP_DIR/znap.zsh ]] ||
-    git clone --depth 1 -- \
-        https://github.com/marlonrichert/zsh-snap.git $ZNAP_DIR
-source $ZNAP_DIR/znap.zsh  # Start Znap
 
 # Enable zsh-autocomplete
 # source $ZSH_REPOS/marlonrichert/zsh-autocomplete/zsh-autocomplete.plugin.zsh
@@ -113,6 +107,10 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-syntax-highlighting)
+
+# Enable zsh-completions (before loading omz)
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
@@ -216,3 +214,4 @@ autoload -U add-zsh-hook
 add-zsh-hook chpwd  dir_change_starship_config
 
 eval "$(direnv hook zsh)"
+eval "$(zoxide init zsh --cmd cd)"
