@@ -15,8 +15,12 @@ sudo apt install zsh fzf ripgrep direnv
 
 # Install Oh-My-Zsh
 if ! command_exists omz; then
+        # Install omz
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        # Add syntax highlighting plugin
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+        # Add completions plugin
+        git clone https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
 fi
 
 # Install starship
@@ -27,6 +31,11 @@ fi
 # Install yazi
 if ! command_exists yazi; then
         cargo install --locked yazi-fm yazi-cli
+fi
+
+# Install zoxide
+if ! command_exists zoxide; then
+        curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 fi
 
 # Show deb installs
@@ -44,6 +53,7 @@ if ! command_exists delta; then
         echo "delta : https://github.com/dandavison/delta/releases/tag/0.18.2"
 fi
 
+echo "No more deb packages to install"
 echo "---------------------------------------------"
 
 sudo apt autoremove && sudo apt autoclean
