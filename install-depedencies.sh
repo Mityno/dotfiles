@@ -11,16 +11,27 @@ command_exists() {
 # Update existing libraries and packages information
 sudo apt update && sudo apt upgrade
 
+echo
+echo "INFO: Installing apt packages"
+echo
+
 sudo apt install zsh fzf ripgrep direnv
 
+echo
+echo "INFO: Finished installing apt packages"
+echo
+
 # Install Oh-My-Zsh
-if ! command_exists omz; then
+if [ ! -d ~/.oh-my-zsh/ ]; then
+        echo "INFO: Installing OmZ..."
         # Install omz
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
         # Add syntax highlighting plugin
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
         # Add completions plugin
         git clone https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
+
+        echo
 fi
 
 # Install starship
@@ -39,7 +50,7 @@ if ! command_exists zoxide; then
 fi
 
 # Show deb installs
-echo "Install latest release from the deb packages :"
+echo "INFO: Install latest release from the deb packages :"
 echo "sudo dpkg -i [debfile].deb"
 
 if ! command_exists bat; then
@@ -53,7 +64,11 @@ if ! command_exists delta; then
         echo "delta : https://github.com/dandavison/delta/releases/tag/0.18.2"
 fi
 
-echo "No more deb packages to install"
-echo "---------------------------------------------"
+echo
+echo "INFO: No more deb packages to install"
+echo
+
+echo "INFO: Updating apt packages"
+echo
 
 sudo apt autoremove && sudo apt autoclean
