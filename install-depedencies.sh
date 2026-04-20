@@ -15,22 +15,40 @@ echo
 echo "INFO: Installing apt packages"
 echo
 
-sudo apt install zsh fzf ripgrep direnv
+sudo apt install zsh ripgrep direnv
 
 echo
 echo "INFO: Finished installing apt packages"
 echo
+
+# Install fzf
+
+if ! command_exists fzf; then
+        echo "Install fzf from git, see https://github.com/junegunn/fzf#using-git"
+        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+        ~/.fzf/install
+        echo
+fi
 
 # Install Oh-My-Zsh
 if [ ! -d ~/.oh-my-zsh/ ]; then
         echo "INFO: Installing OmZ..."
         # Install omz
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-        # Add syntax highlighting plugin
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-        # Add completions plugin
-        git clone https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
+        echo
+fi
 
+if [ -d ~/.oh-my-zsh/ ]; then
+        echo "INFO: Manually adding OmZ plugins"
+        # If omz is installed, add some plugins manually
+        if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
+                # Add syntax highlighting plugin
+                git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+        fi
+        if [ ! -d ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions ]; then
+                # Add completions plugin
+                git clone https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
+        fi
         echo
 fi
 
@@ -47,6 +65,7 @@ fi
 # Install zoxide
 if ! command_exists zoxide; then
         curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+        echo
 fi
 
 # Show deb installs

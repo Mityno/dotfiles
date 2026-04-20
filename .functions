@@ -32,9 +32,9 @@ if ! command_exists neovide; then
 fi
 
 # Shortcut to launch a kitty session with fzf
-if command_exists kitty; then
+if command_exists zle && command_exists kitty; then
         kitty_session() {
-                BUFFER="kitty --detach --session sessions/\$(ls ~/dotfiles/kitty/sessions | fzf) --start-as fullscreen && exit"
+                BUFFER="kitty --session sessions/\$(ls ~/dotfiles/kitty/sessions | fzf) --start-as fullscreen --debug-input"
                 zle accept-line
         }
         zle -N kitty_session
