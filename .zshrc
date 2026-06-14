@@ -23,7 +23,7 @@ fi
 if [ $(whoami) = "vialti" ]; then
         export PATH=$PATH:/matieres/3MMCEP/riscv/bin/
 # ubuntu portable specific config
-elif [ $(whoami) = "titouan" ]; then
+elif [ $(whoami) = "latitude" ]; then
 fi
 
 # Path to your Oh My Zsh installation.
