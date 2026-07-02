@@ -1,3 +1,10 @@
+# Set perf capabilities if needed
+real_perf=$(readlink -f /usr/lib/linux-tools/$(uname -r)/perf)
+[[ $(getcap $real_perf) != *"perfmon"* ]] && (
+        echo "Need to set perf capabilities with sudo" &&
+                sudo setcap 'cap_ipc_lock,cap_sys_ptrace,cap_sys_admin,cap_syslog,cap_perfmon=ep' $real_perf &&
+                echo "Perf capabilities are set" || echo "Failed to set perf capabilities, perf might not be available"
+)
 
 # ubuntu portable specific config
 if [ $(whoami) = "latitude" ]; then
