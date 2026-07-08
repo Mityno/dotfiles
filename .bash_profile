@@ -1,4 +1,7 @@
-setxkbmap -option "nbsp:none"
+
+[ -f ~/.bashrc ] && source ~/.bashrc
+
+command -v setxkbmap > /dev/null && setxkbmap -option "nbsp:none"
 
 # ubuntu portable specific config
 if [ $(whoami) = "latitude" ]; then
