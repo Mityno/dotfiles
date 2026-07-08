@@ -217,4 +217,4 @@ eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh --cmd cd)"
 
 # opam configuration
-[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source /home/latitude/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
