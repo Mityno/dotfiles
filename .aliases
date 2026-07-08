@@ -6,6 +6,7 @@ if command_exists kitten; then
 fi
 
 alias c=bat
+alias v=vim
 alias n=nvim
 alias grep="batgrep --hidden"
 alias man=batman
