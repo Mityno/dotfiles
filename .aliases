@@ -5,11 +5,12 @@ if command_exists kitten; then
         alias kicat="kitten icat"
 fi
 
-alias c=bat
-alias v=vim
-alias n=nvim
-alias grep="batgrep --hidden"
-alias man=batman
+# Only add these aliases if the base command exists
+command_exists bat	&& alias c=bat
+command_exists vim	&& alias v=vim
+command_exists nvim	&& alias n=nvim
+command_exists batgrep	&& alias grep="batgrep --hidden"
+command_exists batman	&& alias man=batman
 
 # WSL only aliases
 if [ $(whoami) = "wsl" ]; then
