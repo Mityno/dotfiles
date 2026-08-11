@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.local/kitty.app/bin/:/snap/bin/:$HOME/applications/bin/
+
 # Add cuda
 export CUDA_HOME=/usr/local/cuda
 if [ -d $CUDA_HOME/bin ]; then
@@ -38,7 +39,7 @@ ZSH_REPOS=$DOTFILES/zsh_repos
 # source $ZSH_REPOS/marlonrichert/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # Bat config folder
-export BAT_CONFIG_DIR="$HOME/dotfiles/bat/"
+export BAT_CONFIG_DIR="$DOTFILES/bat/"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -158,6 +159,8 @@ command_exists() {
 
 # Source a file that stores all custom functions (shell independent)
 source $DOTFILES/.functions
+# Source a file that stores all aliases (shell independent)
+source $DOTFILES/.aliases
 
 export STARSHIP_CONFIG="$HOME/dotfiles/starship.toml"
 eval "$(starship init zsh)"
@@ -166,55 +169,52 @@ eval "$(starship init zsh)"
 
 # WSL only settings
 if [ $(whoami) = "wsl" ]; then
-# if bash -c 'compgen "/proc/sys/fs/binfmt_misc/WSLInterop*" > /dev/null'; then
+        # if bash -c 'compgen "/proc/sys/fs/binfmt_misc/WSLInterop*" > /dev/null'; then
         # Enable fzf bindings and completion
         source /usr/share/doc/fzf/examples/key-bindings.zsh
         # source /usr/share/doc/fzf/examples/completion.zsh
 
         # Allow for tab duplication in the windows terminal
         keep_current_path() {
-          printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
+                printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
         }
         precmd_functions+=(keep_current_path)
 
-	# Fix graphic issue for WSL
-	export GALLIUM_DRIVER=d3d12
+        # Fix graphic issue for WSL
+        export GALLIUM_DRIVER=d3d12
 
         # nvim shortcut to enable discord presence
         nvim() {
-             if ! pidof socat > /dev/null 2>&1; then
-                 [ -e /tmp/discord-ipc-0 ] && rm -f /tmp/discord-ipc-0
-                 socat UNIX-LISTEN:/tmp/discord-ipc-0,fork \
-                     EXEC:"npiperelay.exe //./pipe/discord-ipc-0" 2>/dev/null &
-             fi
+                if ! pidof socat >/dev/null 2>&1; then
+                        [ -e /tmp/discord-ipc-0 ] && rm -f /tmp/discord-ipc-0
+                        socat UNIX-LISTEN:/tmp/discord-ipc-0,fork \
+                                EXEC:"npiperelay.exe //./pipe/discord-ipc-0" 2>/dev/null &
+                fi
 
-             command nvim "$@"
-             if ! pidof nvim > /dev/null 2>&1; then
-                     # Close the communication to avoid running in background
-                     pkill socat
-             fi
+                command nvim "$@"
+                if ! pidof nvim >/dev/null 2>&1; then
+                        # Close the communication to avoid running in background
+                        pkill socat
+                fi
         }
 fi
 
-# Source a file that stores all aliases (shell independent)
-source $DOTFILES/.aliases
-
 # Special starship config depending on the directory
 function dir_change_starship_config() {
-    local git_dir="$HOME/cours/2a"
-    case "$PWD" in
-        "$git_dir/tdt"*) STARSHIP_CONFIG="$HOME/dotfiles/starship/starship_classes.toml";; # config for 2nd year classes
-        "$git_dir-echange/tdt"*) STARSHIP_CONFIG="$HOME/dotfiles/starship/starship_classes.toml";; # config for 2nd year classes
-        *) STARSHIP_CONFIG="$HOME/dotfiles/starship.toml";; # default config
-    esac
+        local git_dir="$HOME/cours/2a"
+        case "$PWD" in
+        "$git_dir/tdt"*) STARSHIP_CONFIG="$HOME/dotfiles/starship/starship_classes.toml" ;;         # config for 2nd year classes
+        "$git_dir-echange/tdt"*) STARSHIP_CONFIG="$HOME/dotfiles/starship/starship_classes.toml" ;; # config for 2nd year classes
+        *) STARSHIP_CONFIG="$HOME/dotfiles/starship.toml" ;;                                        # default config
+        esac
 }
 
 autoload -U add-zsh-hook
 
-add-zsh-hook chpwd  dir_change_starship_config
+add-zsh-hook chpwd dir_change_starship_config
 
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh --cmd cd)"
 
 # opam configuration
-[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh >/dev/null 2>/dev/null
