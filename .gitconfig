@@ -1,10 +1,11 @@
 [include]
 	path = ~/dotfiles/delta/themes.gitconfig
 [user]
-	email = titouan.vial@grenoble-inp.org
-	name = Titouan Vial
+	email = pititcowboy@gmail.com
+	name = Mityno
 [core]
 	pager = delta
+	excludesfile = ~/.config/.global-gitignore
 [interactive]
 	diffFilter = delta --color-only
 [delta]
