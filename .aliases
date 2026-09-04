@@ -8,11 +8,17 @@ fi
 alias diff="diff --color -b -s"
 
 # Only add these aliases if the base command exists
+if command_exists eza; then
+        base_list_command="eza -l --header --icons --links --sort=type --time-style=long-iso"
+        alias ll="$base_list_command"
+        alias l="$base_list_command --all"
+fi
 command_exists bat && alias c=bat
 command_exists vim && alias v=vim
 command_exists nvim && alias n=nvim
 command_exists batgrep && alias grep="batgrep --hidden"
 command_exists batman && alias man=batman
+command_exists rsync && alias rsync="rsync --info=PROGRESS2,STATS2 -h"
 
 # WSL only aliases
 if [ $(whoami) = "wsl" ]; then
