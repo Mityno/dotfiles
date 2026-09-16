@@ -17,7 +17,6 @@ if [ -d $XC8_HOME/bin ]; then
         export PATH=$PATH:$XC8_HOME/bin
 fi
 
-
 . ~/.zprofile
 
 # ensipc specific config
@@ -213,8 +212,12 @@ autoload -U add-zsh-hook
 
 add-zsh-hook chpwd dir_change_starship_config
 
-eval "$(direnv hook zsh)"
-eval "$(zoxide init zsh --cmd cd)"
+if command_exists direnv; then
+        eval "$(direnv hook zsh)"
+fi
+if command_exists cdi; then
+        eval "$(zoxide init zsh --cmd cd)"
+fi
 
 # opam configuration
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh >/dev/null 2>/dev/null
