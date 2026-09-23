@@ -154,3 +154,8 @@ XC8_HOME=/opt/microchip/xc8/v3.10/
 if [ -d $XC8_HOME/bin ]; then
 	PATH=$PATH:$XC8_HOME/bin
 fi
+
+# eza completion
+if command_exists eza; then
+	export FPATH="$HOME/applications/eza/completions/zsh:$FPATH"
+fi
