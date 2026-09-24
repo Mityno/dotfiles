@@ -215,7 +215,7 @@ add-zsh-hook chpwd dir_change_starship_config
 if command_exists direnv; then
         eval "$(direnv hook zsh)"
 fi
-if command_exists cdi; then
+if command_exists zoxide; then
         eval "$(zoxide init zsh --cmd cd)"
 fi
 

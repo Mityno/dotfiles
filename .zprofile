@@ -1,10 +1,21 @@
 # Set perf capabilities if needed
-real_perf=$(readlink -f /usr/lib/linux-tools/$(uname -r)/perf)
-[ -f $real_perf ] && [[ $(getcap $real_perf) != *"perfmon"* ]] && (
-        echo "Need to set perf capabilities with sudo" &&
-                sudo setcap 'cap_ipc_lock,cap_sys_ptrace,cap_sys_admin,cap_syslog,cap_perfmon=ep' $real_perf &&
-                echo "Perf capabilities are set" || echo "Failed to set perf capabilities, perf might not be available"
-)
+if [ $(whoami) = "wsl" ]; then
+        # WSL does not have a specific perf version, hence it is not stored under the `uname -r` directory
+        base_perf=$(ls /usr/lib/linux-tools/**/perf)
+else
+        base_perf=/usr/lib/linux-tools/$(uname -r)/perf
+fi
+
+if [ -f $base_perf ]; then
+        real_perf=$(readlink -f $base_perf)
+        [[ $(getcap $real_perf) != *"perfmon"* ]] && (
+                echo "Need to set perf capabilities with sudo" &&
+                        sudo setcap 'cap_ipc_lock,cap_sys_ptrace,cap_sys_admin,cap_syslog,cap_perfmon=ep' $real_perf &&
+                        echo "Perf capabilities are set" || echo "Failed to set perf capabilities, perf might not be available"
+        )
+else
+        echo "Could not find perf path"
+fi
 
 # ubuntu portable specific config
 if [ $(whoami) = "latitude" ]; then
