@@ -156,6 +156,6 @@ if [ -d $XC8_HOME/bin ]; then
 fi
 
 # eza completion
-if command_exists eza; then
+if ! command -v eza >/dev/null; then
 	export FPATH="$HOME/applications/eza/completions/zsh:$FPATH"
 fi

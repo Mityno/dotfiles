@@ -73,6 +73,7 @@ truncation_symbol = "…/"
 [c]
 symbol = " "
 style = "bg:#86BBD8"
+version_format = "v$major.$minor"
 format = '[ $symbol ($version) ]($style)'
 
 [docker_context]
@@ -136,6 +137,7 @@ format = '[ $symbol ($version) ]($style)'
 [python]
 symbol = "󰌠 "
 style = "bg:#86BBD8"
+version_format = "$major.$minor"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
