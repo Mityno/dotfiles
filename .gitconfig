@@ -1,8 +1,6 @@
 [include]
 	path = ~/dotfiles/delta/themes.gitconfig
 [user]
-	email = pititcowboy@gmail.com
-	name = Mityno
 [core]
 	pager = delta
 	excludesfile = ~/.config/.global-gitignore
