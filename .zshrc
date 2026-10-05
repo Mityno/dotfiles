@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/.cargo/bin
-export PATH=$PATH:$HOME/.local/kitty.app/bin/:/snap/bin/:$HOME/applications/bin/
+export PATH=$PATH:$HOME/.local/kitty.app/bin/:/snap/bin/
+export PATH=$PATH:$HOME/applications/bin/:$HOME/extra/applications/bin/
 
 # Add cuda
 export CUDA_HOME=/usr/local/cuda

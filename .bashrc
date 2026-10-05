@@ -113,8 +113,8 @@ if [ -f ~/dotfiles/.aliases ]; then
 fi
 
 # Specific aliases for bash
-if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+if [ -f $HOME/.bash_aliases ]; then
+	. $HOME/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -147,12 +147,12 @@ if [ whoami == "vialti" ]; then
 fi
 
 # Extend PATH
-PATH="$PATH:$HOME/applications/bin/"
+PATH="$PATH:$HOME/applications/bin/:$HOME/extra/applications/bin/"
 #
 # Add microchip xc8
 XC8_HOME=/opt/microchip/xc8/v3.10/
 if [ -d $XC8_HOME/bin ]; then
-	PATH=$PATH:$XC8_HOME/bin
+	PATH="$PATH:$XC8_HOME/bin"
 fi
 
 # eza completion
