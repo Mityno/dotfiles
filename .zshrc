@@ -18,7 +18,7 @@ if [ -d $XC8_HOME/bin ]; then
         export PATH=$PATH:$XC8_HOME/bin
 fi
 
-. ~/.zprofile
+. ~/.profile
 
 # ensipc specific config
 if [ $(whoami) = "vialti" ]; then
