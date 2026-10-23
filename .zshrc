@@ -165,13 +165,15 @@ source $DOTFILES/.aliases
 export STARSHIP_CONFIG="$HOME/dotfiles/starship.toml"
 eval "$(starship init zsh)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Enable fzf bindings
+[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 
 # WSL only settings
 if [ $(whoami) = "wsl" ]; then
-        # if bash -c 'compgen "/proc/sys/fs/binfmt_misc/WSLInterop*" > /dev/null'; then
-        # Enable fzf bindings and completion
-        source /usr/share/doc/fzf/examples/key-bindings.zsh
+
+        # Manually enable fzf completion
         # source /usr/share/doc/fzf/examples/completion.zsh
 
         # Allow for tab duplication in the windows terminal
@@ -216,6 +218,7 @@ add-zsh-hook chpwd dir_change_starship_config
 if command_exists direnv; then
         eval "$(direnv hook zsh)"
 fi
+
 if command_exists zoxide; then
         eval "$(zoxide init zsh --cmd cd)"
 fi
@@ -226,4 +229,9 @@ fi
 # eza completion
 if command_exists eza; then
         export FPATH="$HOME/applications/eza/completions/zsh:$FPATH"
+fi
+
+# nix config dir
+if command_exists nix; then
+        export NIX_CONF_DIR="$HOME"
 fi
