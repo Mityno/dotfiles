@@ -163,7 +163,9 @@ source $DOTFILES/.functions
 source $DOTFILES/.aliases
 
 export STARSHIP_CONFIG="$HOME/dotfiles/starship.toml"
-eval "$(starship init zsh)"
+command_exists starship && eval "$(starship init zsh)"
+
+command_exists mise && eval "$(mise activate zsh)"
 
 [ -f $HOME/.fzf.zsh ] && source ~/.fzf.zsh
 
